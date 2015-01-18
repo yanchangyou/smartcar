@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./go.sh $3
+`$3.sh`
