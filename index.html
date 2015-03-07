@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,10 +13,11 @@ body {
 }
 
 .control {
-	width: 300px;
-	height: 300px;
+	width: 100px;
+	height: 322px;
 	margin: auto auto;
 	background-color: gray;
+	display: inline-block;
 }
 
 .control div {
@@ -59,6 +61,7 @@ body {
 	height:320px;
 	overflow:hidden;
 	margin: 0px auto;
+	display: inline-block;
 }
 
 #player-in {
@@ -73,43 +76,45 @@ body {
 	overflow:hidden;
 	
 }
+
+#container {
+	width: 850px;
+	height: 350px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -390px;
+	margin-top: -161px;
+}
 </style>
 </head>
 <body>
-	<div id="player-out">
-	<div id="player-in">
-		<iframe frameborder="no" id="playerIframe" src=""></iframe>
-		
-	</div>
-	</div>
-	<div class="control">
-		<div class="row">
-			<div class="col"></div>
-			<div class="col" id="forward">
-				<div class="text">↑</div>
-			</div>
-			<div class="col"></div>
-		</div>
-		<div class="row">
-			<div class="col" id="left">
-				<div class="text">←</div>
-			</div>
-			<div class="col" id="stop">
-				<div class="text">●</div>
-			</div>
-			<div class="col" id="right">
-				<div class="text">→</div>
+	<div id="container">
+		<div id="player-out">
+			<div id="player-in">
+				<iframe frameborder="no" id="playerIframe" src=""></iframe>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col"></div>
-			<div class="col" id="backward">
-				<div class="text">↓</div>
+		<span>
+		<div class="control">
+			<div class="row">
+				<div class="col" id="forward">
+					<div class="text">↑</div>
+				</div>
 			</div>
-			<div class="col"></div>
+			<div class="row">
+				<div class="col" id="stop">
+					<div class="text">●</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col" id="backward">
+					<div class="text">↓</div>
+				</div>
+			</div>
 		</div>
+		</span>
 	</div>
-
 	<iframe src="" id="commandIframe" name="commandIframe" style="display:none;"></iframe>
 
 	<script>
@@ -119,7 +124,8 @@ body {
 			document.getElementById("commandIframe").src = "http://112.74.104.7:18888/cgi?command=" + command + ".sh";
 		}
 	
-		var commands = ["forward", "backward", "left", "right", "stop"];
+		//var commands = ["forward", "backward", "left", "right", "stop"];
+		var commands = ["forward", "backward", "stop"];
 		for(var i=0; i<commands.length; i++) {
 			var command = commands[i];
 			var dom = document.getElementById(command);
