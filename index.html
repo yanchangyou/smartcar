@@ -12,62 +12,63 @@ body {
 }
 
 .control {
+	width: 171px;
+	height: 126px;
 	margin: auto auto;
-	background-color: gray;
-	display: inline-block;
-}
-
-.control-left-right {
-	width: 726px;
-	height: 50px;
-}
-.control-left-right .col {
-	float: right;
-	height: 50px;
-	align: center;
-}
-
-.control-left-right .col .text {
-	line-height: 50px;
-	width: 100px;
-	font-size: 80px;
-}
-
-#stop2,#stop2 .text {
-	width: 50px;
-	text-align: center;
-	padding-right: 7px;
-}
-
-.control-forward-backward {
-	width: 50px;
-	height: 322px;
 }
 
 .control div {
-	margin: 0px;
 	padding: 0px;
 	border: none;
 }
 
-.control-left-right .row {
-	width: 100%;
-	height: 50px;
-}
 
 .col {
 	float: left;
 }
-
-.text {
-	font-size: 100px;
-	line-height: 100px;
-	text-align: center;
+.row {
 }
 
-.text:hover {
-	color: #fff;
-	background-color: #555;
+
+#forward {
+	background-image:url(img/forward-default.png);
+	width:77px;
+	height: 40px;
+}
+#backward {
+	background-image:url(img/backward-default.png);	
+	width:77px;
+	height: 41px;
+}
+#left {
+	background-image:url(img/left-default.png);
+	width:45px;
+	height: 120px;
+}
+#right {
+	background-image:url(img/right-default.png);
+	width:43px;
+	height: 120px;
+}
+#stop {
+	background-image:url(img/stop-default.png);
+	width:77px;
+	height: 39px;
+}
+#forward:hover {
+	background-image:url(img/forward.png);
+}
+#backward:hover {
+	background-image:url(img/backward.png);
+}
+#left:hover {
+	background-image:url(img/left.png);
+}
+#right:hover {
+	background-image:url(img/right.png);
+}
+#stop:hover {
+	background-image:url(img/stop.png);
 }
 
 #stop .text {
@@ -117,40 +118,23 @@ body {
 				<iframe frameborder="no" id="playerIframe" src=""></iframe>
 			</div>
 		</div>
-		<div class="control control-forward-backward">
-			<div class="row">
-				<div class="col" id="forward">
-					<div class="text">↑</div>
+		
+		<div class="control">
+			<div class="col" id="left">
+			</div>			
+			<div class="col" id="stop">
+				<div class="row" id="forward">
+				</div>
+				<div class="row" id="stop">
+				</div>
+				<div class="row" id="backward">
 				</div>
 			</div>
-			<div class="row">
-				<div class="col" id="stop">
-					<div class="text">●</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col" id="backward">
-					<div class="text">↓</div>
-				</div>
-			</div>
-		</div>		
-		<div class="control control-left-right">
-			<div class="row">
-				<div class="col" id="stop2">
-					<div class="text">●</div>
-				</div>
-				<div class="col" id="right">
-					<div class="text">→</div>
-				</div>
-				<div class="col" id="stop3">
-					<div class="text">●</div>
-				</div>
-				<div class="col" id="left">
-					<div class="text">←</div>
-				</div>
+			<div class="col" id="right">
 			</div>
 		</div>
 	</div>
+	
 	<iframe src="" id="commandIframe" name="commandIframe" style="display:none;"></iframe>
 
 	<script>
