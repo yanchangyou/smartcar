@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,11 +12,36 @@ body {
 }
 
 .control {
-	width: 100px;
-	height: 322px;
 	margin: auto auto;
 	background-color: gray;
 	display: inline-block;
+}
+
+.control-left-right {
+	width: 726px;
+	height: 50px;
+}
+.control-left-right .col {
+	float: right;
+	height: 50px;
+	align: center;
+}
+
+.control-left-right .col .text {
+	line-height: 50px;
+	width: 100px;
+	font-size: 80px;
+}
+
+#stop2,#stop2 .text {
+	width: 50px;
+	text-align: center;
+	padding-right: 7px;
+}
+
+.control-forward-backward {
+	width: 50px;
+	height: 322px;
 }
 
 .control div {
@@ -24,19 +50,17 @@ body {
 	border: none;
 }
 
-.row {
+.control-left-right .row {
 	width: 100%;
-	height: 100px;
+	height: 50px;
 }
 
 .col {
 	float: left;
-	width: 100px;
-	height: 100px;
 }
 
 .text {
-	font-size: 80px;
+	font-size: 100px;
 	line-height: 100px;
 	text-align: center;
 }
@@ -93,8 +117,7 @@ body {
 				<iframe frameborder="no" id="playerIframe" src=""></iframe>
 			</div>
 		</div>
-		<span>
-		<div class="control">
+		<div class="control control-forward-backward">
 			<div class="row">
 				<div class="col" id="forward">
 					<div class="text">↑</div>
@@ -110,8 +133,23 @@ body {
 					<div class="text">↓</div>
 				</div>
 			</div>
+		</div>		
+		<div class="control control-left-right">
+			<div class="row">
+				<div class="col" id="stop2">
+					<div class="text">●</div>
+				</div>
+				<div class="col" id="right">
+					<div class="text">→</div>
+				</div>
+				<div class="col" id="stop3">
+					<div class="text">●</div>
+				</div>
+				<div class="col" id="left">
+					<div class="text">←</div>
+				</div>
+			</div>
 		</div>
-		</span>
 	</div>
 	<iframe src="" id="commandIframe" name="commandIframe" style="display:none;"></iframe>
 
@@ -121,13 +159,21 @@ body {
 		function changeCommand(command) {
 			document.getElementById("commandIframe").src = "http://112.74.104.7:18888/cgi?command=" + command + ".sh";
 		}
-	
-		var commands = ["forward", "backward", "stop"];
-		for(var i=0; i<commands.length; i++) {
-			var command = commands[i];
-			var dom = document.getElementById(command);
-			dom.onclick = function () {				
-				changeCommand(this.id);
+		var id_command_map = [];
+		id_command_map["forward"] = "forward";
+		id_command_map["backward"] = "backward";
+		id_command_map["left"] = "left";
+		id_command_map["right"] = "right";
+		id_command_map["stop"] = "stop";
+		id_command_map["stop2"] = "stop";
+		id_command_map["stop3"] = "stop";
+		
+		var commands = ["forward", "backward", "stop", "left", "right"];
+		for(var id in id_command_map) {
+			var dom = document.getElementById(id);
+			dom.onclick = function () {
+				var command = id_command_map[this.id];
+				changeCommand(command);
 			}
 		}
 		document.getElementById("playerIframe").src = "http://112.74.104.7:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
