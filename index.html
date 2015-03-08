@@ -109,13 +109,13 @@ body {
 	margin-left: -340px;
 	margin-top: -320px;
 }
-.game-mode-container {
+.select-container {
 	width:165px;
 	text-align:center;
 	margin:auto;
 	height:18px;
 }
-.game-mode {
+.select-option {
 	font-family:"微软雅黑";
 	font-size: 18px;
 	line-height: 18px;
@@ -133,7 +133,7 @@ body {
 	padding-bottom: 15px;
 }
 
-#click-mode {
+#click-mode,#car-eva {
 	width: 82px;
 }
 
@@ -152,6 +152,10 @@ body {
 				<iframe frameborder="no" id="playerIframe" src=""></iframe>
 			</div>
 		</div>
+		<div class="car-select select-container">
+			<div class="selected select-option" onclick="selectCar(this, 'car-eva');" id="car-adam">亚当</div>
+			<div class="select-option" onclick="selectCar(this, 'car-adam');"id="car-eva">夏娃</div>
+		</div>
 		<div class="control">
 			<div class="col" id="left">
 			</div>			
@@ -166,9 +170,9 @@ body {
 			<div class="col" id="right">
 			</div>
 		</div>
-		<div class="game-mode-container">
-			<div class="game-mode selected" tips="" onclick="setGameMode(this, 'click-mode');" id="touch-mode">触摸模式</div>
-			<div class="game-mode" onclick="setGameMode(this, 'touch-mode');"id="click-mode">点击模式</div>
+		<div class="game-mode-container select-container">
+			<div class="select-option selected" onclick="setGameMode(this, 'click-mode');" id="touch-mode">触摸</div>
+			<div class="select-option" onclick="setGameMode(this, 'touch-mode');"id="click-mode">点击</div>
 		</div>
 		<div></div>
 		<script src="http://www.yanchangyou.cn/js/duoshuo.js"></script>
@@ -179,8 +183,15 @@ body {
 
 	<script>
 	
+		var car_server_map = [];
+		car_server_map["car-adam"] = "http://112.74.104.7:18888";
+		car_server_map["car-eva"] = "http://112.74.104.7:18889";
 		function changeCommand(command) {
-			document.getElementById("commandIframe").src = "http://112.74.104.7:18888/cgi?command=" + command + ".sh";
+			var carServer = getCarServer();
+			document.getElementById("commandIframe").src = carServer + "/cgi?command=" + command + ".sh";
+		}
+		function getCarServer() {
+			return car_server_map[selectedCar];
 		}
 		var id_command_map = [];
 		id_command_map["forward"] = "forward";
@@ -228,9 +239,22 @@ body {
 		
 			if (dom.className.indexOf("selected") == -1) {
 				dom.className = dom.className + " selected";
-			}
-			
+			}			
 		}
+		
+		var selectedCar = "car-adam";
+		function selectCar(dom, otherId) {
+			selectedCar = dom.id;
+			var otherClass = document.getElementById(otherId).className;
+			otherClass = otherClass.replace("selected","");
+			document.getElementById(otherId).className = otherClass;
+		
+			if (dom.className.indexOf("selected") == -1) {
+				dom.className = dom.className + " selected";
+			}
+		}
+		
+		selectCar
 		
 		document.getElementById("playerIframe").src = "http://112.74.104.7:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
 	</script>
