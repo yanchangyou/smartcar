@@ -107,7 +107,7 @@ body {
 	left: 50%;
 	top: 50%;
 	margin-left: -340px;
-	margin-top: -285px;
+	margin-top: -320px;
 }
 .game-mode-container {
 	width:165px;
@@ -125,6 +125,14 @@ body {
 	text-align: center;
 }
 
+.title {
+	font-family:"微软雅黑";
+	font-size: 25px;
+	text-align: center;
+	font-weight: 900;
+	padding-bottom: 15px;
+}
+
 #click-mode {
 	width: 82px;
 }
@@ -136,7 +144,9 @@ body {
 </head>
 <body>
 	<div id="container">
-		
+		<div class="title">
+			<div>玩什么什么游戏</div>
+		</div>
 		<div id="player-out">
 			<div id="player-in">
 				<iframe frameborder="no" id="playerIframe" src=""></iframe>
@@ -160,7 +170,7 @@ body {
 			<div class="game-mode selected" tips="" onclick="setGameMode(this, 'click-mode');" id="touch-mode">触摸模式</div>
 			<div class="game-mode" onclick="setGameMode(this, 'touch-mode');"id="click-mode">点击模式</div>
 		</div>
-		<div style="height:50px;"></div>
+		<div></div>
 		<script src="http://www.yanchangyou.cn/js/duoshuo.js"></script>
 
 	</div>
