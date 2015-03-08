@@ -157,16 +157,17 @@ body {
 			</div>
 		</div>
 		<div class="game-mode-container">
-			<div class="game-mode selected" onclick="setGameMode(this, 'click-mode');" id="touch-mode">触摸模式</div>
+			<div class="game-mode selected" tips="" onclick="setGameMode(this, 'click-mode');" id="touch-mode">触摸模式</div>
 			<div class="game-mode" onclick="setGameMode(this, 'touch-mode');"id="click-mode">点击模式</div>
 		</div>
 	</div>
 	
+	<script src="http://www.yanchangyou.cn/js/duoshuo.js"></script>
+
 	<iframe src="" id="commandIframe" name="commandIframe" style="display:none;"></iframe>
 
 	<script>
 	
-		var ws = null;
 		function changeCommand(command) {
 			document.getElementById("commandIframe").src = "http://112.74.104.7:18888/cgi?command=" + command + ".sh";
 		}
