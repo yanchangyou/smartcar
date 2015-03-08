@@ -145,7 +145,7 @@ body {
 <body>
 	<div id="container">
 		<div class="title">
-			<div>玩什么什么游戏---充电中。。。</div>
+			<div>玩什么什么游戏</div>
 		</div>
 		<div id="player-out">
 			<div id="player-in">
@@ -153,7 +153,7 @@ body {
 			</div>
 		</div>
 		<div class="car-select select-container">
-			<div class="elect-option" onclick="selectCar(this, 'car-eva');" id="car-adam">亚当</div>
+			<div class="select-option" onclick="selectCar(this, 'car-eva');" id="car-adam">亚当</div>
 			<div class="select-option selected" onclick="selectCar(this, 'car-adam');"id="car-eva">夏娃</div>
 		</div>
 		<div class="control">
@@ -242,7 +242,7 @@ body {
 			}			
 		}
 		
-		var selectedCar = "car-adam";
+		var selectedCar = "car-eva";
 		function selectCar(dom, otherId) {
 			selectedCar = dom.id;
 			var otherClass = document.getElementById(otherId).className;
