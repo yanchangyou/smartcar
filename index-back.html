@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>smart car</title>
+
+
+<style>
+body {
+	
+}
+.control {
+	width: 165px;
+	height: 121px;
+	margin: auto auto;
+}
+.control div {
+	padding: 0px;
+	border: none;
+}
+.col {
+	float: left;
+}
+.row {
+}
+#forward {
+	background-image:url(img/forward-default.png);
+	width:77px;
+	height: 40px;
+}
+#backward {
+	background-image:url(img/backward-default.png);	
+	width:77px;
+	height: 41px;
+}
+#left {
+	background-image:url(img/left-default.png);
+	width:45px;
+	height: 120px;
+}
+#right {
+	background-image:url(img/right-default.png);
+	width:43px;
+	height: 120px;
+}
+#stop {
+	background-image:url(img/stop-default.png);
+	width:77px;
+	height: 39px;
+}
+#forward:hover {
+	background-image:url(img/forward.png);
+}
+#backward:hover {
+	background-image:url(img/backward.png);
+}
+#left:hover {
+	background-image:url(img/left.png);
+}
+#right:hover {
+	background-image:url(img/right.png);
+}
+#stop:hover {
+	background-image:url(img/stop.png);
+}
+#stop .text {
+	font-size: 80px;
+}
+#player_id {
+	width: 700px;
+	height: 360px;
+}
+#player-out {
+	width:670px;
+	height:320px;
+	overflow:hidden;
+	margin: 0px auto;
+	display: inline-block;
+}
+#player-in {
+	margin-top:-110px;
+	margin-left:-30px;
+	height:450px;
+	width:750px;
+}
+#player-in iframe{
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	
+}
+#container {
+	width: 672px;
+	height: 530px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -340px;
+	margin-top: -320px;
+}
+.select-container {
+	width:165px;
+	text-align:center;
+	margin:auto;
+	height:18px;
+}
+.select-option {
+	font-family:"微软雅黑";
+	font-size: 18px;
+	line-height: 18px;
+	width: 83px;
+	float:left;
+	background-color : #aaa;
+	text-align: center;
+}
+.title {
+	font-family:"微软雅黑";
+	font-size: 25px;
+	text-align: center;
+	font-weight: 900;
+	padding-bottom: 15px;
+}
+#click-mode,#car-eva {
+	width: 82px;
+}
+.selected {
+	background-color : #777;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<div class="title">
+			<div>玩什么什么游戏</div>
+		</div>
+		<div id="player-out">
+			<div id="player-in">
+				<iframe frameborder="no" id="playerIframe" src=""></iframe>
+			</div>
+		</div>
+		<div class="select-container car-select">
+			<div class="select-option selected" onclick="selectCar(this, 'car-eva');" id="car-adam">亚当</div>
+			<div class="select-option" onclick="selectCar(this, 'car-adam');"id="car-eva">夏娃</div>
+		</div>
+		<div class="control">
+			<div class="col" id="left">
+			</div>			
+			<div class="col">
+				<div class="row" id="forward">
+				</div>
+				<div class="row" id="stop">
+				</div>
+				<div class="row" id="backward">
+				</div>
+			</div>
+			<div class="col" id="right">
+			</div>
+		</div>
+		<div class="game-mode-container select-container">
+			<div class="select-option selected" onclick="setGameMode(this, 'click-mode');" id="touch-mode">触摸</div>
+			<div class="select-option" onclick="setGameMode(this, 'touch-mode');"id="click-mode">点击</div>
+		</div>
+		<div></div>
+		<script src="http://www.yanchangyou.cn/js/duoshuo.js"></script>
+
+	</div>
+	
+	<iframe src="" id="commandIframe" name="commandIframe" style="display:none;"></iframe>
+
+	<script>
+	
+		var car_server_map = [];
+		car_server_map["car-adam"] = "http://112.74.104.7:18888";
+		car_server_map["car-eva"] = "http://112.74.104.7:18889";
+		function changeCommand(command) {
+			var carServer = getCarServer();
+			document.getElementById("commandIframe").src = carServer + "/cgi?command=" + command + ".sh";
+		}
+		function getCarServer() {
+			return car_server_map[selectedCar];
+		}
+		var id_command_map = [];
+		id_command_map["forward"] = "forward";
+		id_command_map["backward"] = "backward";
+		id_command_map["left"] = "left";
+		id_command_map["right"] = "right";
+		id_command_map["stop"] = "stop";
+		
+		var commands = ["forward", "backward", "stop", "left", "right"];
+		for(var id in id_command_map) {
+			var dom = document.getElementById(id);
+			dom.onclick = function () {
+				if (!isClickMode()) {
+					return;
+				}
+				var command = id_command_map[this.id];
+				changeCommand(command);
+			}
+			dom.onmousedown = function () {
+				if (!isTouchMode()) {
+					return;
+				}
+				var command = id_command_map[this.id];
+				changeCommand(command);
+			}
+			dom.onmouseup = function () {			
+				if (!isTouchMode()) {
+					return;
+				}				
+				changeCommand("stop");
+			}
+		}
+		function isClickMode() {
+			return gameMode == "click-mode";
+		}
+		function isTouchMode() {
+			return gameMode == "touch-mode";
+		}
+		var gameMode = "touch-mode";
+		function setGameMode(dom, otherId) {
+			gameMode = dom.id;
+			var otherClass = document.getElementById(otherId).className;
+			otherClass = otherClass.replace("selected","");
+			document.getElementById(otherId).className = otherClass;
+		
+			if (dom.className.indexOf("selected") == -1) {
+				dom.className = dom.className + " selected";
+			}			
+		}
+		
+		var selectedCar = "car-adam";
+		function selectCar(dom, otherId) {
+			selectedCar = dom.id;
+			var otherClass = document.getElementById(otherId).className;
+			otherClass = otherClass.replace("selected","");
+			document.getElementById(otherId).className = otherClass;
+		
+			if (dom.className.indexOf("selected") == -1) {
+				dom.className = dom.className + " selected";
+			}
+		}
+		
+		document.getElementById("playerIframe").src = "http://112.74.104.7:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
+	</script>
+	
+</body>
+</html>
