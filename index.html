@@ -152,9 +152,9 @@ body {
 				<iframe frameborder="no" id="playerIframe" src=""></iframe>
 			</div>
 		</div>
-		<div class="car-select select-container">
-			<div class="select-option" onclick="selectCar(this, 'car-eva');" id="car-adam">亚当</div>
-			<div class="select-option selected" onclick="selectCar(this, 'car-adam');"id="car-eva">夏娃</div>
+		<div class="select-container car-select">
+			<div class="select-option selected" onclick="selectCar(this, 'car-eva');" id="car-adam">亚当</div>
+			<div class="select-option" onclick="selectCar(this, 'car-adam');"id="car-eva">夏娃</div>
 		</div>
 		<div class="control">
 			<div class="col" id="left">
@@ -242,7 +242,7 @@ body {
 			}			
 		}
 		
-		var selectedCar = "car-eva";
+		var selectedCar = "car-adam";
 		function selectCar(dom, otherId) {
 			selectedCar = dom.id;
 			var otherClass = document.getElementById(otherId).className;
@@ -253,8 +253,6 @@ body {
 				dom.className = dom.className + " selected";
 			}
 		}
-		
-		selectCar
 		
 		document.getElementById("playerIframe").src = "http://112.74.104.7:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
 	</script>
