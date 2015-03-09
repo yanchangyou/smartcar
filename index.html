@@ -1,5 +1,3 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,26 +8,20 @@
 body {
 	
 }
-
 .control {
 	width: 165px;
 	height: 121px;
 	margin: auto auto;
 }
-
 .control div {
 	padding: 0px;
 	border: none;
 }
-
-
 .col {
 	float: left;
 }
 .row {
 }
-
-
 #forward {
 	background-image:url(img/forward-default.png);
 	width:77px;
@@ -70,11 +62,9 @@ body {
 #stop:hover {
 	background-image:url(img/stop.png);
 }
-
 #stop .text {
 	font-size: 80px;
 }
-
 #player_id {
 	width: 700px;
 	height: 360px;
@@ -86,7 +76,6 @@ body {
 	margin: 0px auto;
 	display: inline-block;
 }
-
 #player-in {
 	margin-top:-110px;
 	margin-left:-30px;
@@ -99,7 +88,6 @@ body {
 	overflow:hidden;
 	
 }
-
 #container {
 	width: 672px;
 	height: 530px;
@@ -107,7 +95,7 @@ body {
 	left: 50%;
 	top: 50%;
 	margin-left: -340px;
-	margin-top: -320px;
+	margin-top: -300px;
 }
 .select-container {
 	width:165px;
@@ -124,7 +112,6 @@ body {
 	background-color : #aaa;
 	text-align: center;
 }
-
 .title {
 	font-family:"微软雅黑";
 	font-size: 25px;
@@ -132,11 +119,9 @@ body {
 	font-weight: 900;
 	padding-bottom: 15px;
 }
-
 #click-mode,#car-eva {
 	width: 82px;
 }
-
 .selected {
 	background-color : #777;
 }
@@ -148,8 +133,7 @@ body {
 		<div class="title">
 			<div>玩什么什么游戏</div>
 		</div>
-		<div><h1>维修中，晚上见。。。</h1></div>
-		<!--
+		<!--<div><h1>维修中，晚上见。。。</h1></div>-->
 		<div id="player-out">
 			<div id="player-in">
 				<iframe frameborder="no" id="playerIframe" src=""></iframe>
@@ -177,8 +161,7 @@ body {
 			<div class="select-option selected" onclick="setGameMode(this, 'click-mode');" id="touch-mode">触摸</div>
 			<div class="select-option" onclick="setGameMode(this, 'touch-mode');"id="click-mode">点击</div>
 		</div>
-		<div></div>
-		-->
+		<div style="height:30px;"></div>
 		<script src="http://www.yanchangyou.cn/js/duoshuo.js"></script>
 
 	</div>
@@ -189,8 +172,8 @@ body {
 	<script>
 	
 		var car_server_map = [];
-		car_server_map["car-adam"] = "http://112.74.104.7:18888";
-		car_server_map["car-eva"] = "http://112.74.104.7:18889";
+		car_server_map["car-adam"] = "http://api.whatwhatgame.com:18888";
+		car_server_map["car-eva"] = "http://api.whatwhatgame.com:18889";
 		function changeCommand(command) {
 			var carServer = getCarServer();
 			document.getElementById("commandIframe").src = carServer + "/cgi?command=" + command + ".sh";
@@ -259,7 +242,7 @@ body {
 			}
 		}
 		
-		document.getElementById("playerIframe").src = "http://112.74.104.7:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
+		document.getElementById("playerIframe").src = "http://api.whatwhatgame.com:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
 	</script>
 	
 </body>
