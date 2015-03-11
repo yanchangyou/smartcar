@@ -67,7 +67,9 @@ body {
 	width: 700px;
 	height: 360px;
 }
-#player-out {
+
+
+#player-out,#apple-video {
 	width:670px;
 	height:320px;
 	overflow:hidden;
@@ -134,7 +136,9 @@ body {
 		<!--<div><h1>升级中，待会儿见。。。</h1></div>-->
 		<!--<div><h1>维修中，晚上见。。。</h1></div>-->
 		<!--<div><h1>充电中，明天见。。。</h1></div>-->
-		
+		<div id="apple-video" style="display:none;">
+			<iframe width='100%' frameborder="no" height='100%' id="apple-video-iframe" src=''></iframe>
+		</div>
 		<div id="player-out">
 			<div id="player-in">
 				<iframe frameborder="no" id="playerIframe" src=""></iframe>
@@ -243,7 +247,13 @@ body {
 			}
 		}
 		
-		document.getElementById("playerIframe").src = "http://api.whatwhatgame.com:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
+		 if (window.navigator.platform.indexOf("Win32") == -1) {
+		 	document.getElementById("player-out").style.display="none";
+			document.getElementById("apple-video-iframe").src = "http://api.whatwhatgame.com:8080/live/demo.m3u8";
+		 } else {
+			document.getElementById("playerIframe").src = "http://api.whatwhatgame.com:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
+		 }
+		
 	</script>
 	
 </body>
