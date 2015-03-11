@@ -248,9 +248,12 @@ body {
 		}
 		
 		 if (window.navigator.platform.indexOf("Win32") == -1) {
-		 	document.getElementById("player-out").style.display="none";
+		 	document.getElementById("apple-video").style.display="";		
+		 	document.getElementById("player-out").style.display="none";			
 			document.getElementById("apple-video-iframe").src = "http://api.whatwhatgame.com:8080/live/demo.m3u8";
 		 } else {
+		 	document.getElementById("apple-video").style.display="none";		
+		 	document.getElementById("player-out").style.display="";	
 			document.getElementById("playerIframe").src = "http://api.whatwhatgame.com:8080/players/srs_player.html?vhost=&stream=demo&autostart=true";
 		 }
 		
