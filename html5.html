@@ -245,6 +245,19 @@ body {
 			}
 		}
 		
+		document.getElementById("play-out").onswipeleft = function() {
+			changeCommand("left");
+		}
+		document.getElementById("play-out").onswiperight = function() {
+			changeCommand("right");
+		}
+		document.getElementById("play-out").onswipetop = function() {
+			changeCommand("forward");
+		}
+		document.getElementById("play-out").onswipebottom = function() {
+			changeCommand("backword");
+		}
+		
 	</script>
 	
 </body>
