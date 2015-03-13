@@ -1,0 +1,31 @@
+<script type="text/javascript" src="jwplayer.js" ></script>
+<script type='text/javascript'>jwplayer.key = 'N8zhkmYvvRwOhz4aTGkySoEri4x+9pQwR7GHIQ=='; </script>
+<style>
+	#player_id {
+    pointer-events: none;
+}
+</style>
+<div id="player_id">
+</div>
+
+<script>
+	var _url = "rtmp://api.whatwhatgame.com:1935/live/demo";
+	var width = "600";
+	var height = "300";
+	var conf = {
+		file: _url,
+		width: width,
+		height: height,
+		autostart: true,
+		analytics: { enabled: false},
+		controls: false,
+		events: {
+			onPause: function(event) {
+				_player.play();
+			}
+		}
+	};
+	
+	_player = jwplayer('player_id').setup(conf);
+	
+</script>
