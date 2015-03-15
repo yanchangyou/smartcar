@@ -131,8 +131,8 @@ body {
 			<iframe width='100%' frameborder="no" height='100%' id="video-iframe" src=''></iframe>
 		</div>
 		<div class="select-container car-select">
-			<div class="select-option selected" onclick="selectCar(this, 'car-eva');" id="car-adam">亚当</div>
-			<div class="select-option" onclick="selectCar(this, 'car-adam');"id="car-eva">夏娃</div>
+			<div class="select-option" onclick="selectCar(this, 'car-eva');" id="car-adam">亚当</div>
+			<div class="select-option selected" onclick="selectCar(this, 'car-adam');"id="car-eva">夏娃</div>
 		</div>
 		<div class="control">
 			<div class="col" id="left">
@@ -262,6 +262,10 @@ body {
 		var selectedCar = "car-adam";
 		function selectCar(dom, otherId) {
 			selectedCar = dom.id;
+			//var car = selectedCar.split("-")[1];
+			if (window.location.href.indexOf(selectedCar) === -1) {
+				window.location.href = "http://whatwhatgame.com/?car=" + selectedCar;
+			}
 			var otherClass = document.getElementById(otherId).className;
 			otherClass = otherClass.replace("selected","");
 			document.getElementById(otherId).className = otherClass;
@@ -275,9 +279,17 @@ body {
 			videoUrl = "http://api.whatwhatgame.com:8080/live/demo.m3u8";
 		} else {
 			videoUrl = "http://whatwhatgame.com/video/";
+			if(window.location.href.indexOf("adam") > -1) {
+				videoUrl = "http://whatwhatgame.com/video/?car=adam";
+			}
 		}
 		document.getElementById("video-iframe").src = videoUrl;
-		 
+		
+		if(window.location.href.indexOf("adam") > -1) {
+			var dom = document.getElementById("car-adam");
+			selectCar(dom,"car-eva");
+		}
+		
 		
 	</script>
 	
