@@ -259,7 +259,10 @@ body {
 			}			
 		}
 		
-		var selectedCar = "car-adam";
+		var selectedCar = "car-eva";
+		if(window.location.href.indexOf("adam") > -1) {
+			selectedCar = "car-adam";
+		}
 		function selectCar(dom, otherId) {
 			selectedCar = dom.id;
 			//var car = selectedCar.split("-")[1];
