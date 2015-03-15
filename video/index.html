@@ -14,7 +14,13 @@
 <div id="player_id"></div>
 
 <script>
+	
 	var _url = "rtmp://api.whatwhatgame.com:1935/live/demo";
+	
+	if (window.location.href.indexOf("adam") > -1) {
+		_url = "rtmp://api.whatwhatgame.com:1935/whatwhatgame/first.adam";
+	}
+	
 	var width = "600";
 	var height = "300";
 	var conf = {
