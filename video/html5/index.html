@@ -1,9 +1,11 @@
+<style>
+        * {margin:0px; padding:0px;overflow:hidden;}
+</style>
 <video width="100%" height="100%" id="video"
         autoplay controls autobuffer 
         src="http://api.whatwhatgame.com:8080/whatwhatgame/first.adam.m3u8"
         type="application/vnd.apple.mpegurl">
 </video>
-
 <script>
   if (window.href.indexOf("eva") > -1) {
     document.getElementById("video").src = "http://api.whatwhatgame.com:8080/whatwhatgame/first.eva.m3u8";
