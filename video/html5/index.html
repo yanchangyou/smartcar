@@ -9,6 +9,8 @@
   if (window.location.href.indexOf("eva") > -1) {
     document.getElementById("video").src = "http://api.whatwhatgame.com:8080/whatwhatgame/first.eva.m3u8";
   }
-  document.getElementById("video").click();
-  document.getElementById("video").play();
+  setTimeout(function(){
+         //document.getElementById("video").click();
+         document.getElementById("video").play();
+  }, 5*1000)
 </script>
